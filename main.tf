@@ -11,7 +11,7 @@ resource "aws_launch_template" "web_server_as" {
   resource "aws_elb" "web_server_lb"{
      name = "web-server-lb"
      security_groups = [aws_security_group.web_server.id]
-     subnets = ["subnet-02a736976786db807", "subnet-0f1e1fcf454c3bb5e"]
+     subnets = ["subnet-02a736976786db807", "subnet-0ed0b3c0120c43d05"]
      listener {
       instance_port     = 8000
       instance_protocol = "http"
@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "web_server_asg" {
     desired_capacity     = 2
     health_check_type    = "EC2"
     load_balancers       = [aws_elb.web_server_lb.name]
-    availability_zones    = ["ap-south-1b", "ap-south-1a"] 
+    availability_zones    = ["ap-south-1b", "ap-south-1c"] 
     launch_template {
         id      = aws_launch_template.web_server_as.id
         version = "$Latest"
