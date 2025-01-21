@@ -25,7 +25,6 @@ resource "aws_launch_template" "web_server_as" {
   }
 resource "aws_autoscaling_group" "web_server_asg" {
     name                 = "web-server-asg"
-    security_groupi      = [aws_security_group.web_server.id]
     min_size             = 1
     max_size             = 3
     desired_capacity     = 2
